@@ -1,0 +1,10 @@
+# compiled files
+*.exe
+
+# Drawio files
+*.drawio
+
+# Data stored
+# data/*
+*.csv
+*.png

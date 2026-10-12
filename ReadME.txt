@@ -3,7 +3,7 @@ It implements a cascaded first-order IIR (Infinite Impulse Response) low-pass fi
 The project generates a clean sine wave, adds Gaussian white noise to create a noisy signal, and then applies the low-pass filter to recover the desired signal.
 
 This is the structure folder of the project
-LPF/
+DSP_project/
 │
 ├── data/
 ├── helpers/

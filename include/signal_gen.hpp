@@ -5,8 +5,21 @@
 #include <vector>
 #include <cmath>
 #include "pHelpers.hpp"
+#include "signalFlow.hpp"
 
-VecD SineGen(
+
+class SineSignal : public SignalFlow {
+
+public:
+    VecD SineSignalGen(
+        double freq,
+        double sample_rate,
+        int samples,
+        double amplitude);
+};
+
+
+VecD SineSignal::SineSignalGen(
     double freq,
     double sample_rate,
     int samples,

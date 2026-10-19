@@ -6,11 +6,24 @@
 #include "noisySignal.hpp"
 #include "signal_gen.hpp"
 #include "pHelpers.hpp"
+#include "signalFlow.hpp"
+
+
+class LowPassFilterClass : public SignalFlow {
+
+public:
+    VecD LowPassFilter(
+        const VecD& input,
+        double cutoff_freq,
+        double sample_rate);
+};
+
+
 
 // Cascaded first-order IIR low-pass filter.
 // Repeating the same RC stage improves attenuation of high-frequency noise
 // while preserving the existing function signature.
-inline VecD LowPassFilter(
+inline VecD LowPassFilterClass::LowPassFilter(
 	const VecD& input,
 	double cutoff_freq,
 	double sample_rate)

@@ -20,6 +20,12 @@ int main(){
     // Variables for low-pass filter
     double cutoff_freq;
 
+    // Instantiate signal generators and filter objects
+    SineSignal sineGenerator;
+    NoiseGenerator noiseGenerator;
+    LowPassFilterClass filter;
+    NoisySignal noisySignalGenerator;
+
 
 
 
@@ -39,7 +45,7 @@ int main(){
 
     std::ofstream file("data/signal.csv");
 
-    VecD sine_Wave = SineGen(freq, sample_rate, samples, amplitude);
+    VecD sine_Wave = sineGenerator.SineSignalGen(freq, sample_rate, samples, amplitude);
     std::cout<< "Generated signal: "<< std::endl;
     for(int n=0; n<samples; n++){
         double t = n/static_cast<double>(sample_rate);
@@ -64,7 +70,7 @@ int main(){
 
     std::ofstream Nfile("data/noise.csv");
 
-    VecD noise = NoiseGen(N_amp, N_samp);
+    VecD noise = noiseGenerator.NoiseGen(N_amp, N_samp);
     std::cout<< "Generated noise: "<< std::endl;
     for(int n=0; n<N_samp; n++){
         Nfile<< noise[n]<< std::endl;
@@ -83,7 +89,7 @@ int main(){
     */
     std::ofstream NoisyFile("data/NoisySignal.csv");
 
-    VecD NoisySignal = NoisySignalGen(freq, sample_rate, samples, amplitude, N_amp, N_samp);
+    VecD NoisySignal = noisySignalGenerator.NoisySignalGen(freq, sample_rate, samples, amplitude, N_amp, N_samp);
     std::cout<< "Generated noisy signal: "<< std::endl;
     for(int n=0; n<samples; n++){
         double t = n/static_cast<double>(sample_rate);
@@ -104,7 +110,7 @@ int main(){
     std::cout<< "Enter low-pass cutoff frequency (Hz): "<< std::endl;
     std::cin>> cutoff_freq;
 
-    auto filteredSignal = LowPassFilter(NoisySignal, cutoff_freq, sample_rate);
+    auto filteredSignal = filter.LowPassFilter(NoisySignal, cutoff_freq, sample_rate);
     std::ofstream LPFFile("data/FilteredSignal.csv");
     std::cout<< "Generated filtered signal: "<< std::endl;
     for(int n=0; n<samples; n++){
@@ -112,6 +118,16 @@ int main(){
         LPFFile<< t << "," << filteredSignal[n]<< std::endl;
     }
     LPFFile.close();
+
+
+
+
+
+    /*  The signal flow is split into multiple channels using
+    *   SignalFlow::splitter(const std::vector<double>& input, int numChannels)
+    *
+    *   Here the filtered signal is split into multiple channels for further processing.
+    */
 
     system("python ./scripts/plot.py");
 

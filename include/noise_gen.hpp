@@ -5,9 +5,18 @@
 #include <random>
 #include "signal_gen.hpp"
 #include "pHelpers.hpp"
+#include "signalFlow.hpp"
+
+
+class NoiseGenerator : public SignalFlow {
+
+public:
+    VecD NoiseGen(double N_amp, int N_samp);
+};
+
 
 // Noise Generator
-VecD NoiseGen(double N_amp, int N_samp)
+VecD NoiseGenerator::NoiseGen(double N_amp, int N_samp)
 {
     std::random_device rd;
     std::mt19937 gen(rd());

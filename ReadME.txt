@@ -46,6 +46,17 @@ Contains the application's entry point.
 -----------------------------------------------------------------------------------------------------------------------------------------------
 
 
+Building and Running
+
+From the project root:
+
+    g++ -I include -I helpers .\src\main.cpp -o final
+    .\final.exe
+
+The signal generators and filter expose instance methods; create an object
+before calling them. Each derived-class header includes signalFlow.hpp.
+
+
 Python Plotting Setup
 
 The plotting script requires pandas and matplotlib. From the project root, use

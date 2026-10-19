@@ -46,6 +46,32 @@ Contains the application's entry point.
 -----------------------------------------------------------------------------------------------------------------------------------------------
 
 
+Python Plotting Setup
+
+The plotting script requires pandas and matplotlib. From the project root, use
+the same Python interpreter selected in VS Code to install the dependencies:
+
+    python -m pip install -r requirements.txt
+    python scripts\plot.py
+
+Generate the CSV signal files in data before running the plotting script.
+Run the script from the project root so its relative data paths resolve.
+If an import is still missing, select the interpreter where the dependencies
+were installed using VS Code's "Python: Select Interpreter" command.
+
+The C++ program launches plotting with system("python ./scripts/plot.py").
+This uses python from PATH, which can differ from VS Code's selected interpreter.
+In the terminal used to run the C++ program, check and install with:
+
+    python -c "import sys; print(sys.executable)"
+    python -m pip install -r requirements.txt
+
+Changing VS Code's selected interpreter alone does not change the C++ system call.
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+
 Project Design
 
 1. SineGen()

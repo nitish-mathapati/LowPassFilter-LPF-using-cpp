@@ -9,6 +9,10 @@ public:
     // Function to split a signal
     Vector_VecD splitter(const VecD& input, int numChannels);
 
+protected:
+    double freq, sample_rate, amplitude, N_amp, cutoff_freq;
+    int samples, N_samp;
+
 }; // class SignalFlow
 
 

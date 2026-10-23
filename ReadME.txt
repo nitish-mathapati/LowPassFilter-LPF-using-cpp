@@ -56,6 +56,15 @@ From the project root:
 The signal generators and filter expose instance methods; create an object
 before calling them. Each derived-class header includes signalFlow.hpp.
 
+Call SineSignal::SineSignalGen() on an instance to read signal parameters
+interactively. Use getSampleRate() on that same instance and the returned
+vector's size when writing time/sample pairs. Invalid interactive input reports
+an error and stops the program. The four-argument SineSignalGen() overload
+generates samples without prompting.
+
+Currently, the noise and filter stages in main.cpp are commented out. Plotting
+still requires their CSV files, so those plots may show previously generated data.
+
 
 Python Plotting Setup
 
